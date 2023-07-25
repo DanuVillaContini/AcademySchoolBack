@@ -1,12 +1,12 @@
 const { Router } = require("express")
 const { check, param, body} = require("express-validator")
 const { expressValidations } = require("../middleware/common.validation")
-const { createAlumno, deleteAlumno, updateByIdAlumno, findByIdAlumno, findAllAlumno } = require("../controllers/alumnos.controller")
+const { createAlumno, deleteAlumno, updateByIdAlumno, findByIdAlumno, findAllAlumno } = require("../controllers/alumnos.controllers")
 
 const alumnoRouter = Router()
 
 
-// http://localhost:8000/alumno
+// http://localhost:8000/alumno/create
 alumnoRouter.post("/create",
     [
         check('nameAlumno', "Ingrese nombre del alumno").notEmpty(),
@@ -24,7 +24,7 @@ alumnoRouter.get("/find", findAllAlumno)
 
 
 // http://localhost:8000/alumno/find-by-id/
-personalAlumno.get("/find-by-id/:id",
+alumnoRouter.get("/find-by-id/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un id valido")
     ],
