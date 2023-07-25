@@ -26,6 +26,7 @@ const alumnoSchema = mongoose.Schema(
         cuotaAlumno: {
             type:Boolean,
             require: true,
+            default: false
         },
     }
 )
