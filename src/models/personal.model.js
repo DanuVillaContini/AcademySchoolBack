@@ -29,7 +29,7 @@ const personalSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
-        personalcontacto:{
+        personalContacto:{
             telefono: { 
                 type: String,
                 required: true,
