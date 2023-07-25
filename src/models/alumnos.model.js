@@ -1,0 +1,35 @@
+const mongoose = require("mongoose")
+
+const alumnoSchema = mongoose.Schema(
+    {
+        nameAlumno:{
+            type: String,
+            required: true,
+            trim: true,
+            minLenght: 3,
+            maxLenght: 15
+        },
+        lastnameAlumno:{
+            type: String,
+            required: true,
+            trim: true,
+            minLenght:3,
+            maxLenght: 30
+        },
+        
+        legajoAlumno: {
+            type:Number,
+            required: true,
+            unique: true, 
+        },
+
+        cuotaAlumno: {
+            type:Boolean,
+            require: true,
+        },
+    }
+)
+
+
+const Alumno = mongoose.model("Alumno", alumnoSchema)
+module.exports = Alumno
