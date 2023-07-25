@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require("mongoose");
-const alumnosRouter = require('./src/routes/alumnos.route');
+const alumnoRouter = require('./src/routes/alumnos.route');
 const personalRouter = require('./src/routes/personal.route');
 
 require("dotenv").config()
@@ -12,7 +12,7 @@ const port = process.env.PORT
 app.use(express.json({ limit: "50mb" }))
 
 //
-app.use("/alumnos", alumnosRouter)
+app.use("/alumno", alumnoRouter)
 app.use("/personal", personalRouter)
 
 

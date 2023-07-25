@@ -6,7 +6,7 @@ const { createAlumno, deleteAlumno, updateByIdAlumno, findByIdAlumno, findAllAlu
 const alumnoRouter = Router()
 
 
-// http://localost:8000/alumno
+// http://localhost:8000/alumno
 alumnoRouter.post("/create",
     [
         check('nameAlumno', "Ingrese nombre del alumno").notEmpty(),
