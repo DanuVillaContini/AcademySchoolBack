@@ -10,45 +10,46 @@ const mongoose = require("mongoose")
 
 const personalSchema = mongoose.Schema(
     {
-        nameUser:{
+        nameUser: {
             type: String,
             required: true,
             trim: true,
             minLenght: 3,
             maxLenght: 15
         },
-        lastnameUser:{
+        lastnameUser: {
             type: String,
             required: true,
             trim: true,
-            minLenght:3,
+            minLenght: 3,
             maxLenght: 30
         },
-        dateAdmission:{
+        dateAdmission: {
             type: Date,
             required: true,
             trim: true,
         },
-        personalContacto:{
-            telefono: { 
+        personalContacto: {
+            telefono: {
                 type: String,
                 required: true,
-                minLenght:10,
+                minLenght: 10,
                 maxLenght: 15
             },
-            correo:{
+            correo: {
                 type: String,
                 required: true,
                 trim: true,
                 unique: true,
-                minLenght: 20,
+                minLenght: 10,
                 maxLenght: 64
             }
         },
         legajoUser: {
-            type:Number,
+            type: Number,
             required: true,
-            unique: true, 
+            unique: true,
+            minLenght: 5
         }
     }
 )

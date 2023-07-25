@@ -8,14 +8,16 @@ const { createPersonal, deletePersonal, updateByIdPersonal, findByIdPersonal, fi
 const personalRouter = Router()
 
 
-// http://localost:8000/personal/create
+// http://localhost:8000/personal/create
 personalRouter.post("/create",
     [
         check('nameUser', "Ingrese nombre del empleado").notEmpty(),
         check('lastnameUser', "Ingrese apellido del empleador").notEmpty(),
         check('dateAdmission', "Indique fecha de ingreso").notEmpty(),
-        check('personalcontacto.correo', 'Ingrese el correo del personal').notEmpty(),
-        check('personalcontacto.correo', 'El Correo debe ser una dirección de correo electrónico válida').isEmail(),
+
+        check('personalContacto.correo', 'Ingrese el correo del personal').notEmpty(),
+        check('personalContacto.correo', 'El Correo debe ser una dirección de correo electrónico válida').isEmail(),
+
         check('legajoUser', "Ingrese el n° de legajo").notEmpty()
     ],
     expressValidations,
@@ -24,11 +26,11 @@ personalRouter.post("/create",
 )
 
 
-// http://localost:8000/personal/find
-personalRouter.get("/find", findAllPersonal
+// http://localhost:8000/personal/find
+personalRouter.get("/find", findAllPersonal)
 
-)
-// http://localost:8000/personal/find-by-id/
+
+// http://localhost:8000/personal/find-by-id/
 personalRouter.get("/find-by-id/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un id valido")
@@ -38,7 +40,7 @@ personalRouter.get("/find-by-id/:id",
 
 )
 
-// http://localost:8000/personal/update
+// http://localhost:8000/personal/update
 personalRouter.put("/update/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un ID válido"),
@@ -53,7 +55,7 @@ personalRouter.put("/update/:id",
     expressValidations,
     updateByIdPersonal
 )
-// http://localost:8000/personal/delete
+// http://localhost:8000/personal/delete
 personalRouter.delete("/delete/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un id valido")
@@ -64,7 +66,7 @@ personalRouter.delete("/delete/:id",
 )
 
 
-// http://localost:8000/personal/login
+// http://localhost:8000/personal/login
 // personalRouter.post("/login",
 //     [
 
