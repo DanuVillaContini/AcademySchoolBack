@@ -58,11 +58,44 @@ const findByIdPersonal = async ( req, res) => {
 
 
 const updateByIdPersonal = async ( req, res) => {
-    
-}
-const deletePersonal = async ( req, res) => {
+    const personal = await Personal.findById(req.params.id)
 
+    if (personal === null) {
+        res.status(404)
+        return res.json({ message: "Personal admin not found or already delete"})
+    }
+
+    await Personal.findByIdAndUpdate(req.params.id, {
+        nameUser: req.body.nameUser,
+        lastnameUser: req.body.lastnameUser,
+        dateAdmission: req.body.dateAdmission,
+        personalContacto: {
+            telefono: req.body.personalContacto.telefono,
+            correo: req.body.personalContacto.correo,
+        },
+        legajoUser: req.body.legajoUser
+    })
+
+    res.json({ message: "Update Personal" })
 }
+
+
+const deletePersonal = async ( req, res) => {
+    const personal = await Personal.findById(req.params.id)
+
+    if (personal === null) {
+        res.status(404)
+        return res.json({ message: "Personal admin not found or already delete"})
+    }
+
+    const filters = { _id: req.params.id}
+
+    const deletedDocuments = await Personal.deleteOne(filters)
+
+    res.json({ message: "Delete Personal: " + personal.nameUser })
+}
+
+
 
 module.exports = {
     createPersonal,
