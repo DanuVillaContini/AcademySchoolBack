@@ -4,6 +4,7 @@ const alumnoRouter = require('./src/routes/alumnos.route');
 const personalRouter = require('./src/routes/personal.route');
 const notasRouter = require('./src/routes/notas.route');
 const materiaRouter = require('./src/routes/materia.route');
+const { createMateria } = require('./src/controllers/materia.controllers');
 
 require("dotenv").config()
 
@@ -17,8 +18,7 @@ app.use(express.json({ limit: "50mb" }))
 app.use("/alumno", alumnoRouter)
 app.use("/personal", personalRouter)
 app.use("/notas", notasRouter)
-app.use("/materia", materiaRouter)
-
+app.use("/materias", materiaRouter)
 
 
 
@@ -30,3 +30,6 @@ mongoose.connect(process.env.MONGO_URI)
         })
     })
     .catch(() => console.log("Fallo la conexión a la DB ---> "))
+
+
+createMateria()

@@ -11,30 +11,32 @@ const createNotaAlumno = async (req, res) => {
         año
     } = req.body
 
-    //Logica para verificar si existe y Comparar idAlumno con id del alumno del modelo alumnos
-    const alumnoExistente = await Alumno.findById(idAlumno);
-    if (!alumnoExistente) {
-        return res.status(404).json({ message: "El ID del alumno no existe." });
+    try {
+        // Logica para check si existe (alumno) en base a idAlumno
+        const alumnoExistente = await Alumno.findById(idAlumno);
+        if (!alumnoExistente) {
+            return res.status(404).json({ message: "El ID del alumno no existe." });
+        }
+        // Logica para check si existe (materia) en base a idMateria
+        const materiaExistente = await Materia.findById(idMateria);
+        if (!materiaExistente) {
+            return res.status(404).json({ message: "El ID de la materia no existe." });
+        }
+
+        // Crear la nueva nota
+        const nuevaNota = new Nota({
+            idAlumno,
+            idMateria,
+            notaMateria,
+            año
+        })
+
+        await nuevaNota.save();
+
+        res.status(201).json({ message: "Nota cargada exitosamente" });
+    } catch (error) {
+        res.status(500).json({ message: "Error al crear la nota" });
     }
-
-    //Logica para verificar si existe y Comparar idMateria con id de la materia del modelo Materia
-    const materiaExistente = await Materia.findById(idMateria);
-    if (!materiaExistente) {
-        return res.status(404).json({ message: "El ID de la materia no existe." });
-    }
-
-    // Crear la nueva nota
-    const nuevaNota = new Nota({
-        idAlumno,
-        idMateria,
-        notaMateria,
-        año
-    })
-
-    await nuevaNota.save()
-
-    res.state(201)
-    res.json({ message: "Nota cargada exitosamente" })
 }
 
 

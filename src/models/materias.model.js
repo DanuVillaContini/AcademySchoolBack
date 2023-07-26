@@ -5,7 +5,7 @@ const materiaSchema = new mongoose.Schema(
         nombreMateria: {
             type: String,
             required: true,
-            unique: true
+
         }
     }
 
@@ -15,3 +15,6 @@ const materiaSchema = new mongoose.Schema(
 const Materia = mongoose.model('Materia', materiaSchema);
 
 module.exports = Materia;
+
+
+
