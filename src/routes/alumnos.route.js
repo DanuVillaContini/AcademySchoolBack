@@ -33,7 +33,7 @@ alumnoRouter.get("/find-by-id/:id",
 
 )
 
-// http://localhost:8000/alumno/update
+// http://localhost:8000/alumno/update/
 alumnoRouter.put("/update/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un ID válido"),
@@ -44,7 +44,7 @@ alumnoRouter.put("/update/:id",
     expressValidations,
     updateByIdAlumno
 )
-// http://localhost:8000/alumno/delete
+// http://localhost:8000/alumno/delete/
 alumnoRouter.delete("/delete/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un id valido")

@@ -8,7 +8,7 @@ const { createPersonal, deletePersonal, updateByIdPersonal, findByIdPersonal, fi
 const personalRouter = Router()
 
 
-// http://localhost:8000/personal/create
+// http://localhost:8000/personal/create-
 personalRouter.post("/create",
     [
         check('nameUser', "Ingrese nombre del empleado").notEmpty(),

@@ -43,7 +43,7 @@ const findByIdAlumno = async ( req, res) => {
         return res.json({ message: "Alumno admin not found"})
     }
 
-    res.json({ message: "FIND ALUMNO BY ID", data: alumno })
+    res.json({ message: "FIND ALUMNO BY ID" + alumno.nameAlumno })
 }
 
 const updateByIdAlumno = async ( req, res) => {
