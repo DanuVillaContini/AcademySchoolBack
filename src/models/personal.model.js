@@ -29,21 +29,19 @@ const personalSchema = mongoose.Schema(
             required: true,
             trim: true,
         },
-        personalContacto: {
-            telefono: {
-                type: String,
-                required: true,
-                minLenght: 10,
-                maxLenght: 15
-            },
-            correo: {
-                type: String,
-                required: true,
-                trim: true,
-                unique: true,
-                minLenght: 10,
-                maxLenght: 64
-            }
+        telefono: {
+            type: String,
+            required: true,
+            minLenght: 10,
+            maxLenght: 15
+        },
+        correo: {
+            type: String,
+            required: true,
+            trim: true,
+            unique: true,
+            minLenght: 10,
+            maxLenght: 64
         },
         legajoUser: {
             type: Number,

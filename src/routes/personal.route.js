@@ -8,15 +8,15 @@ const { createPersonal, deletePersonal, updateByIdPersonal, findByIdPersonal, fi
 const personalRouter = Router()
 
 
-// http://localhost:8000/personal/create-
+// http://localhost:8000/personal/create
 personalRouter.post("/create",
     [
         check('nameUser', "Ingrese nombre del empleado").notEmpty(),
         check('lastnameUser', "Ingrese apellido del empleador").notEmpty(),
         check('dateAdmission', "Indique fecha de ingreso").notEmpty(),
 
-        check('personalContacto.correo', 'Ingrese el correo del personal').notEmpty(),
-        check('personalContacto.correo', 'El Correo debe ser una dirección de correo electrónico válida').isEmail(),
+        check('correo', 'Ingrese el correo del personal').notEmpty(),
+        check('correo', 'El Correo debe ser una dirección de correo electrónico válida').isEmail(),
 
         check('legajoUser', "Ingrese el n° de legajo").notEmpty()
     ],
@@ -47,8 +47,8 @@ personalRouter.put("/update/:id",
         body("nameUser").isString().optional().withMessage("Debe mandar un nombre"),
         body("lastnameUser").isString().optional().withMessage("Debe mandar un apellido"),
         body("dateAdmission").toDate().optional().isDate().withMessage("Debe mandar una fecha de admisión válida"),
-        body("personalcontacto.telefono").isString().optional().withMessage("Debe mandar un telefono"),
-        body("personalcontacto.correo").isString().optional().withMessage("Debe mandar un contacto personal"),
+        body("telefono").isString().optional().withMessage("Debe mandar un telefono"),
+        body("correo").isString().optional().withMessage("Debe mandar un contacto personal"),
         body("legajoUser").isNumeric().optional().withMessage("Debe mandar un número de legajo válido")
 
     ],

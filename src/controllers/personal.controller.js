@@ -6,7 +6,8 @@ const createPersonal = async ( req, res) => {
         nameUser,
         lastnameUser,
         dateAdmission,
-        personalContacto,
+        telefono,
+        correo,
         legajoUser
 
     } = req.body
@@ -16,10 +17,8 @@ const createPersonal = async ( req, res) => {
         nameUser,
         lastnameUser,
         dateAdmission,
-        personalContacto: {
-            telefono: personalContacto.telefono,
-            correo: personalContacto.correo,
-        },
+        telefono,
+        correo,
         legajoUser
     })
 

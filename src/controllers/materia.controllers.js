@@ -20,6 +20,5 @@ const showMaterias = async (req, res) => {
 
 
 module.exports = {
-    createMateria,
     showMaterias
 }
