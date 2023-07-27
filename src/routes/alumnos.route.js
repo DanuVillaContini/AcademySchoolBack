@@ -15,7 +15,6 @@ alumnoRouter.post("/create",
     ],
     expressValidations,
     createAlumno
-
 )
 
 
@@ -30,7 +29,6 @@ alumnoRouter.get("/find-by-id/:id",
     ],
     expressValidations,
     findByIdAlumno
-
 )
 
 // http://localhost:8000/alumno/update/
@@ -51,7 +49,6 @@ alumnoRouter.delete("/delete/:id",
     ],
     expressValidations,
     deleteAlumno
-
 )
 
 module.exports = alumnoRouter

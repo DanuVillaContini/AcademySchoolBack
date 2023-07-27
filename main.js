@@ -1,3 +1,4 @@
+
 const express = require('express')
 const mongoose = require("mongoose");
 const alumnoRouter = require('./src/routes/alumnos.route');
@@ -5,6 +6,7 @@ const personalRouter = require('./src/routes/personal.route');
 const notasRouter = require('./src/routes/notas.route');
 const materiaRouter = require('./src/routes/materia.route');
 const { createMateria } = require('./src/controllers/materia.controllers');
+const { iniciarMateriasDB } = require("./src/utils/inicio.utils");
 
 require("dotenv").config()
 
@@ -25,11 +27,9 @@ app.use("/materias", materiaRouter)
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("DB: 'pruebaFinalProject' CONECTADA")
+        iniciarMateriasDB()
         app.listen(port, () => {
             console.log(`Aplicacion ejecutandose en el puerto ---> ${port}`)
         })
     })
     .catch(() => console.log("Fallo la conexión a la DB ---> "))
-
-
-createMateria()

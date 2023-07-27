@@ -1,4 +1,4 @@
-const Nota = require("../models/alumnos.model")
+const Nota = require("../models/notas.model")
 const Alumno = require("../models/alumnos.model")
 const Materia = require("../models/materias.model")
 
@@ -8,7 +8,7 @@ const createNotaAlumno = async (req, res) => {
         idAlumno,
         idMateria,
         notaMateria,
-        año
+        curso
     } = req.body
 
     try {
@@ -28,13 +28,14 @@ const createNotaAlumno = async (req, res) => {
             idAlumno,
             idMateria,
             notaMateria,
-            año
+            curso
         })
 
         await nuevaNota.save();
 
         res.status(201).json({ message: "Nota cargada exitosamente" });
     } catch (error) {
+        console.log(error)
         res.status(500).json({ message: "Error al crear la nota" });
     }
 }

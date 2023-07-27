@@ -1,33 +1,5 @@
 const Materia = require("../models/materias.model")
 
-const createMateria = async (req, res) => {
-    const materias = [
-        "Matemáticas",
-        "Lengua y Literatura",
-        "Biología",
-        "Física",
-        "Química",
-        "Economía",
-        "Geografía",
-        "Historia",
-        "Educación Física",
-    ];
-
-    try {
-        for (const materia of materias) {
-            const existingMateria = await Materia.findOne({ nombreMateria: materia });
-
-            if (!existingMateria) {
-                const newMateria = new Materia({ nombreMateria: materia });
-                await newMateria.save();
-            }
-        }
-        console.log("Materias creadas exitosamente.");
-    } catch (error) {
-        console.error("Error al crear las materias:", error);
-    }
-}
-
 
 const showMaterias = async (req, res) => {
     try {
@@ -45,8 +17,6 @@ const showMaterias = async (req, res) => {
         res.status(500).json({ message: "Error al obtener las materias." });
     }
 }
-
-
 
 
 module.exports = {

@@ -5,7 +5,7 @@ const materiaSchema = new mongoose.Schema(
         nombreMateria: {
             type: String,
             required: true,
-
+            unique: true
         }
     }
 

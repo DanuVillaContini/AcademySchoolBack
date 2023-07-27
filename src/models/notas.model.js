@@ -3,25 +3,23 @@ const mongoose = require('mongoose');
 const notasSchema = new mongoose.Schema({
     idAlumno: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'alumnos',
+        ref: 'Alumno',
         required: true
     },
     idMateria: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'materia',
+        ref: 'Materia',
         required: true
     },
     notaMateria: {
         type: Number,
         required: true,
-        minLenght: 1,
-        maxLenght: 10
+        maxLenght: 2
     },
-    año: {
+    curso: {
         type: Number,
         required: true,
-        minLenght: 1,
-        maxLenght: 4
+        maxLenght: 1
     }
 });
 

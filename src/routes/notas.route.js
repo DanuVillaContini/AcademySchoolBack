@@ -12,7 +12,7 @@ notasRouter.post("/create",
         body("idAlumno").isMongoId().withMessage("El ID del alumno debe ser válido"),
         body("idMateria").isMongoId().withMessage("El ID de la materia debe ser válido"),
         body("notaMateria").isNumeric().withMessage("La nota debe ser un número válido"),
-        body("año").isInt().withMessage("El año de cursado debe ser un número entero válido"),
+        body("curso").isNumeric().withMessage("El año de cursado debe ser un número entero válido"),
     ],
     expressValidations,
     createNotaAlumno
