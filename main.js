@@ -6,6 +6,7 @@ const personalRouter = require('./src/routes/personal.route');
 const notasRouter = require('./src/routes/notas.route');
 const materiaRouter = require('./src/routes/materia.route');
 const { iniciarMateriasDB } = require("./src/utils/inicio.utils");
+const yearRouter = require('./src/routes/year.route');
 
 require("dotenv").config()
 
@@ -20,6 +21,7 @@ app.use("/alumno", alumnoRouter)
 app.use("/personal", personalRouter)
 app.use("/notas", notasRouter)
 app.use("/materias", materiaRouter)
+app.use("/year",yearRouter)
 
 
 

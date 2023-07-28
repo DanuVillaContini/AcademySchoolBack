@@ -1,4 +1,6 @@
-const Alumno = require("../models/alumnos.model")
+const Year = require("../models/year.model");
+const Alumno = require("../models/alumnos.model");
+
 
 const createAlumno = async (req, res) => {
     const {
@@ -19,6 +21,8 @@ const createAlumno = async (req, res) => {
     })
 
     await alumno.save()
+    const year=new Year({ alumnoId:alumno._id})
+    await year.save()
     res.status(201)
     res.json({ message: "Alumno registrado exitosamente" })
 }
