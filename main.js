@@ -7,6 +7,7 @@ const notasRouter = require('./src/routes/notas.route');
 const materiaRouter = require('./src/routes/materia.route');
 const { iniciarMateriasDB } = require("./src/utils/inicio.utils");
 const yearRouter = require('./src/routes/year.route');
+const { iniciarSuperUsuarioDB } = require('./src/utils/superUser.utils');
 
 require("dotenv").config()
 
@@ -29,6 +30,7 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("DB: 'pruebaFinalProject' CONECTADA")
         iniciarMateriasDB()
+        iniciarSuperUsuarioDB()
         app.listen(port, () => {
             console.log(`Aplicacion ejecutandose en el puerto ---> ${port}`)
         })

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 const yearSchema= new mongoose.Schema({
-   
     idAlumno:{
         type : mongoose.Schema.Types.ObjectId,
         ref: 'Alumno',
@@ -13,11 +12,31 @@ const yearSchema= new mongoose.Schema({
         minLenght: 1,
         required :true
     },
-    cuotas:{
-        type : Boolean,
-        required: true,
+    cuotaUno: {
+        type:Boolean,
+        default: false
+    },
+    cuotaDos: {
+        type:Boolean,
+        default: false
+    },
+    cuotaTres: {
+        type:Boolean,
+        default: false
+    },
+    cuotaCuatro: {
+        type:Boolean,
+        default: false
+    },
+    cuotaCinco: {
+        type:Boolean,
+        default: false
+    },
+    cuotaSeis: {
+        type:Boolean,
         default: false
     }
+    
 })
 
 const Year = mongoose.model('Year', yearSchema)

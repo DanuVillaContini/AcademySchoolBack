@@ -4,7 +4,7 @@
   "description": "proyecto final parte back",
   "main": "main.js",
   "scripts": {
-    "dev": "node main.js",
+    "dev": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

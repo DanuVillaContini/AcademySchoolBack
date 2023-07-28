@@ -20,9 +20,17 @@ const createAlumno = async (req, res) => {
         legajoAlumno
     })
 
+
     await alumno.save()
-    const year=new Year({ alumnoId:alumno._id})
+    const year = new Year({
+        idAlumno: alumno._id,
+        anio: 1
+    })
     await year.save()
+
+    console.log(alumno)
+    console.log(year)
+
     res.status(201)
     res.json({ message: "Alumno registrado exitosamente" })
 }

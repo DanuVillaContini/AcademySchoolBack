@@ -48,6 +48,16 @@ const personalSchema = mongoose.Schema(
             required: true,
             unique: true,
             minLenght: 5
+        },
+        isAdmin: {
+            type: Boolean,
+            required: false,
+            default: false
+        },
+        pass:{
+            type:String,
+            required: true,
+            maxLenght: 200
         }
     }
 )
