@@ -5,9 +5,10 @@ const alumnoRouter = require('./src/routes/alumnos.route');
 const personalRouter = require('./src/routes/personal.route');
 const notasRouter = require('./src/routes/notas.route');
 const materiaRouter = require('./src/routes/materia.route');
-const { iniciarMateriasDB } = require("./src/utils/inicio.utils");
+const { iniciarMateriasDB, iniciarSuperUsuarioDB } = require("./src/utils/inicio.utils");
 const yearRouter = require('./src/routes/year.route');
-const { iniciarSuperUsuarioDB } = require('./src/utils/superUser.utils');
+
+
 
 require("dotenv").config()
 
