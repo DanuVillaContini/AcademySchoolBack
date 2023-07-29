@@ -35,8 +35,23 @@ const yearSchema= new mongoose.Schema({
     cuotaSeis: {
         type:Boolean,
         default: false
+    },
+    cuotaSiete: {
+        type:Boolean,
+        default: false
+    },
+    cuotaOcho: {
+        type:Boolean,
+        default: false
+    },
+    cuotaNueve: {
+        type:Boolean,
+        default: false
+    },
+    cuotaDiez: {
+        type:Boolean,
+        default: false
     }
-    
 })
 
 const Year = mongoose.model('Year', yearSchema)
