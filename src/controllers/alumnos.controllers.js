@@ -47,7 +47,7 @@ const findAllAlumno = async (req, res) => {
             },
             lastnameAlumno: {
                 $regex: lastnameRegex,
-            }
+            },
         };
         const alumno = await Alumno.find(filters);
 

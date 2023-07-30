@@ -16,7 +16,6 @@ const alumnoSchema = mongoose.Schema(
             minLenght:3,
             maxLenght: 30
         },
-        
         legajoAlumno: {
             type:Number,
             required: true,

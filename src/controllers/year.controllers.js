@@ -1,10 +1,9 @@
 const Year = require("../models/year.model")
 
 const showYear = async (req, res) => {
-    const idYear = req.params.id; // Obtener el id del documento Year desde los parámetros de la solicitud
+    const idYear = req.params.id;
 
     try {
-      // Buscar el documento Year por su id
       const year = await Year.findById(idYear);
   
       if (!year) {
@@ -33,17 +32,16 @@ const showYear = async (req, res) => {
 
 
 const updateYear = async (req, res) => {
-    const idYear = req.params.id; // Obtener el id del documento Year desde los parámetros de la solicitud
-    const cuotaName = req.params.cuota; // Obtener el nombre de la cuota desde los parámetros de la solicitud
+    const idYear = req.params.id; 
+    const cuotaName = req.params.cuota; 
 
-    // Verificar si el nombre de la cuota recibida es válido
+
     const validCuotas = ["cuotaUno", "cuotaDos", "cuotaTres", "cuotaCuatro", "cuotaCinco", "cuotaSeis","cuotaSiete","cuotaOcho","cuotaNueve","cuotaDiez"];
     if (!validCuotas.includes(cuotaName)) {
         return res.status(400).json({ message: "Nombre de cuota no válido" });
     }
 
     try {
-        // Buscar el documento Year por su id
         const year = await Year.findById(idYear);
 
         if (!year) {
@@ -53,7 +51,6 @@ const updateYear = async (req, res) => {
         // Alternar el estado de la cuota específica
         year[cuotaName] = !year[cuotaName];
 
-        // Guardar los cambios en la base de datos
         await year.save();
 
         res.json({ message: 'Estado de la cuota' + cuotaName + 'alternado correctamente', year });
