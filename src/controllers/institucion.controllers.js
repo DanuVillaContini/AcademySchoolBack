@@ -26,9 +26,21 @@ try {
 }
 
 
+const showDataInstituto = async (req, res) => {
+    try {
+        const institucion = await Institucion.findOne()
 
+        if (!institucion) {
+            return res.status(404).json({ mensaje: 'Institución no encontrada' });
+        }
+        res.status(200).json(institucion)
+    } catch (error) {
+        console.error('Error al obtener la institución:', error);
+        res.status(500).json({ mensaje: 'Error al obtener la institución' });
+    }
+}
 
 module.exports = {
-    updateInstitucion
+    updateInstitucion, showDataInstituto
 }
 
