@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-// const jwt = require("jsonwebtoken")
-// const { JWT_SECRET } = require("../common/constante")
+const jwt = require("jsonwebtoken")
+const { JWT_SECRET } = require("../common/constante")
 const Personal = require("../models/personal.model")
 const { validationResult } = require('express-validator');
 
@@ -40,4 +40,46 @@ const updateRol = async (req, res)=>{
   }
 }
 
-module.exports = updateRol
+
+
+const loginUser = async (req, res) => {
+  const {
+      correo,
+      pass
+  } = req.body
+
+  //Preguntamos si existe el user
+  const personal = await Personal.findOne({ correo })
+
+  if (personal === null) {
+      //codigo no existe
+      res.status(404)
+      return res.json({ message: "Usuario Inexistente" })
+  }
+
+  // Verifica si la contraseña es igual a la que se creo al principio en el registro
+  const isMatch = bcrypt.compareSync(pass, personal.pass)
+
+  // Error 401 sin autorizacion
+  if (!isMatch) {
+      res.status(401)
+      return res.json({ message: "Sin autorizacion" })
+  }
+
+  //Funcion que Firma JWT
+  const token = jwt.sign(
+      {
+          id: personal._id,
+          correo: personal.correo,
+          isEmployee: personal.isEmployee
+      }, JWT_SECRET)
+
+  res.status(200)
+  res.json({ access_token: token })
+
+}
+
+
+
+
+module.exports = {updateRol, loginUser}
