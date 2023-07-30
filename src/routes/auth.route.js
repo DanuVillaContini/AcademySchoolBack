@@ -1,17 +1,33 @@
-const { Router } = require("express")
-const { check} = require('express-validator');
-const { expressValidations } = require("../middlewares/common.validations.js");
+const { Router } = require("express");
+const { check, param } = require("express-validator");
+const { expressValidations } = require("../middleware/common.validation");
+const updateRol = require("../controllers/auth.controllers");
 
-authRouter.post("/login",
-    [
-        check('correo', "Debe ingresar un Correo").notEmpty(),
-        check('correo', "El formato debe ser example@example.com").isEmail(),
-        check('pass', 'Debe el pass de usuario').notEmpty(),
-        check('pass', 'Debe ser alphanumerico el pass').isAlphanumeric(),
+// http://localhost:8000/auth
+const authRouter = Router();
 
-    ],
-    expressValidations,
-    loginUser,
-)
+//  authRouter.post(
+//    "/login",
+//    [
+//      check("correo", "Debe ingresar un Correo").notEmpty(),
+//      check("correo", "El formato debe ser example@example.com").isEmail(),
+//      check("pass", "Debe el pass de usuario").notEmpty(),
+//      check("pass", "Debe ser alphanumerico el pass").isAlphanumeric(),
+//    ],
+//    expressValidations,
+//    loginUser
+//  );
 
-module.exports = authRouter
+authRouter.put(
+  "/update-rol/:id",
+  [
+    param("id").isMongoId().withMessage("Debe mandar un ID válido"),
+    check("isAdmin", "Debe mandar un booleano como isAdmin").isBoolean(),
+    check("pass", "Debe el pass de usuario").notEmpty(),
+    check("pass", "Debe ser alphanumerico el pass").isAlphanumeric(),
+  ],
+  expressValidations,
+  updateRol
+);
+
+module.exports = authRouter;

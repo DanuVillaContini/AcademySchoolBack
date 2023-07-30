@@ -56,7 +56,7 @@ const personalSchema = mongoose.Schema(
         },
         pass:{
             type:String,
-            required: true,
+            required: false,
             maxLenght: 200
         }
     }

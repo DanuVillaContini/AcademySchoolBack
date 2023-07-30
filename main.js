@@ -7,6 +7,7 @@ const notasRouter = require('./src/routes/notas.route');
 const materiaRouter = require('./src/routes/materia.route');
 const { iniciarMateriasDB, iniciarSuperUsuarioDB } = require("./src/utils/inicio.utils");
 const yearRouter = require('./src/routes/year.route');
+const authRouter = require('./src/routes/auth.route');
 
 
 
@@ -24,6 +25,7 @@ app.use("/personal", personalRouter)
 app.use("/notas", notasRouter)
 app.use("/materias", materiaRouter)
 app.use("/year",yearRouter)
+app.use("/auth", authRouter)
 
 
 
