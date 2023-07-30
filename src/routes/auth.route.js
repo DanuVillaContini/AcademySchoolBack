@@ -18,11 +18,12 @@ const authRouter = Router();
 //    loginUser
 //  );
 
+
+// http://localhost:8000/auth/update-rol/:id
 authRouter.put(
   "/update-rol/:id",
   [
     param("id").isMongoId().withMessage("Debe mandar un ID válido"),
-    check("isAdmin", "Debe mandar un booleano como isAdmin").isBoolean(),
     check("pass", "Debe el pass de usuario").notEmpty(),
     check("pass", "Debe ser alphanumerico el pass").isAlphanumeric(),
   ],

@@ -1,3 +1,4 @@
+const express = require('express');
 const bcrypt = require('bcryptjs');
 // const jwt = require("jsonwebtoken")
 // const { JWT_SECRET } = require("../common/constante")
@@ -12,7 +13,6 @@ const updateRol = async (req, res)=>{
 
   const { id } = req.params;
   const { pass } = req.body;
-  const {isAdmin} = req.body;
 
   try {
     // Busca al personal por el ID proporcionado
