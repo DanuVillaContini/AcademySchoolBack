@@ -1,6 +1,7 @@
 const Materia = require("../models/materias.model");
 const Personal = require("../models/personal.model");
 const bcrypt = require('bcryptjs');
+const Institucion = require("../models/institucion.model")
 
 const iniciarMateriasDB = async () => {
     console.log("PrepararDB")
@@ -61,7 +62,31 @@ const iniciarSuperUsuarioDB = async () => {
     }
 };
 
+
+const iniciarInstitutoDB = async () => {
+    try{
+        console.log("Creando Institucion ")
+
+        const collection = await Institucion.find()
+        if (collection.length > 0) return
+
+        const institutoDefecto = new Institucion({
+            nombreInstituto: "Instituto",
+            telefonoInstituto: "123456789",
+            correoInstituto: "instituto@example.com",
+            direccionInstituto: "adress instituto 1234",
+            datosActualizados: false 
+        })
+
+        await institutoDefecto.save()
+        console.log("Institucion creada exitosamente");
+
+    }catch (error){
+        console.error("Error al crear la Institucion:", error)
+    }
+}
+
 module.exports = {
     iniciarMateriasDB,
-    iniciarSuperUsuarioDB
+    iniciarSuperUsuarioDB, iniciarInstitutoDB
 }
