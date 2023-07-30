@@ -43,41 +43,40 @@ const updateRol = async (req, res)=>{
 
 
 const loginUser = async (req, res) => {
-  const {
-      correo,
-      pass
-  } = req.body
+  try {
+      const { correo, pass } = req.body;
 
-  //Preguntamos si existe el user
-  const personal = await Personal.findOne({ correo })
+      const personal = await Personal.findOne({ correo });
 
-  if (personal === null) {
-      //codigo no existe
-      res.status(404)
-      return res.json({ message: "Usuario Inexistente" })
+      if (personal === null) {
+          res.status(404);
+          return res.json({ message: "Usuario Inexistente" });
+      }
+
+      const isMatch = bcrypt.compareSync(pass, personal.pass);
+
+      if (!isMatch) {
+          res.status(401);
+          return res.json({ message: "Sin autorización" });
+      }
+
+      const token = jwt.sign(
+          {
+              id: personal._id,
+              correo: personal.correo,
+              isEmployee: personal.isEmployee
+          },
+          JWT_SECRET
+      );
+
+      res.status(200);
+      res.json({ access_token: token });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
   }
+};
 
-  // Verifica si la contraseña es igual a la que se creo al principio en el registro
-  const isMatch = bcrypt.compareSync(pass, personal.pass)
-
-  // Error 401 sin autorizacion
-  if (!isMatch) {
-      res.status(401)
-      return res.json({ message: "Sin autorizacion" })
-  }
-
-  //Funcion que Firma JWT
-  const token = jwt.sign(
-      {
-          id: personal._id,
-          correo: personal.correo,
-          isEmployee: personal.isEmployee
-      }, JWT_SECRET)
-
-  res.status(200)
-  res.json({ access_token: token })
-
-}
 
 
 

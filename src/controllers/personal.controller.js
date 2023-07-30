@@ -1,98 +1,113 @@
 const Personal = require("../models/personal.model")
 
 
-const createPersonal = async ( req, res) => {
-    const{
-        nameUser,
-        lastnameUser,
-        dateAdmission,
-        telefono,
-        correo,
-        legajoUser
+const createPersonal = async (req, res) => {
+    try {
+        const {
+            nameUser,
+            lastnameUser,
+            dateAdmission,
+            telefono,
+            correo,
+            legajoUser
+        } = req.body;
 
-    } = req.body
+        const personal = new Personal({
+            nameUser,
+            lastnameUser,
+            dateAdmission,
+            telefono,
+            correo,
+            legajoUser
+        });
 
-    
-    const personal = new Personal({
-        nameUser,
-        lastnameUser,
-        dateAdmission,
-        telefono,
-        correo,
-        legajoUser
-    })
+        await personal.save();
+        res.status(201);
+        res.json({ message: "Personal registrado exitosamente" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
+    }
+};
 
-    await personal.save()
-    res.status(201)
-    res.json({ message: "Personal registrado exitosamente" })
-}
+const findAllPersonal = async (req, res) => {
+    try {
+        const nameRegex = new RegExp(req.query.nameUser);
+        const lastnameRegex = new RegExp(req.query.lastnameUser);
+        const filters = {
+            nameUser: {
+                $regex: nameRegex,
+            },
+            lastnameUser: {
+                $regex: lastnameRegex,
+            }
+        };
+        const personal = await Personal.find(filters);
+        res.json({ message: "Personas encontrado", data: personal });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
+    }
+};
 
-const findAllPersonal = async ( req, res) => {
-    const nameRegex = new RegExp(req.query.nameUser)
-    const lastnameRegex = new RegExp(req.query.lastnameUser)
-    const filters = {
-        nameUser: {
-            $regex: nameRegex,
-        },
-        lastnameUser: {
-            $regex: lastnameRegex,
+const findByIdPersonal = async (req, res) => {
+    try {
+        const personal = await Personal.findById(req.params.id);
+        if (personal === null) {
+            res.status(404);
+            return res.json({ message: "Personal not found" });
         }
+        res.json({ message: "FIND PERSONAL BY ID", data: personal });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
     }
-    const personal = await Personal.find(filters)
+};
 
-    res.json({ message: "Personas encontrado", data: personal })
-}
+const updateByIdPersonal = async (req, res) => {
+    try {
+        const personal = await Personal.findById(req.params.id);
+        if (personal === null) {
+            res.status(404);
+            return res.json({ message: "Personal not found or already deleted" });
+        }
 
+        await Personal.findByIdAndUpdate(req.params.id, {
+            nameUser: req.body.nameUser,
+            lastnameUser: req.body.lastnameUser,
+            dateAdmission: req.body.dateAdmission,
+            personalContacto: {
+                telefono: req.body.personalContacto.telefono,
+                correo: req.body.personalContacto.correo,
+            },
+            legajoUser: req.body.legajoUser
+        });
 
-const findByIdPersonal = async ( req, res) => {
-    const personal = await Personal.findById(req.params.id)
-
-    if (personal === null) {
-        res.status(404)
-        return res.json({ message: "Personal admin not found"})
+        res.json({ message: "Update Personal" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
     }
+};
 
-    res.json({ message: "FIND PERSONAL BY ID", data: personal })
-}
+const deletePersonal = async (req, res) => {
+    try {
+        const personal = await Personal.findById(req.params.id);
+        if (personal === null) {
+            res.status(404);
+            return res.json({ message: "Personal not found or already deleted" });
+        }
 
+        const filters = { _id: req.params.id };
+        const deletedDocuments = await Personal.deleteOne(filters);
 
-const updateByIdPersonal = async ( req, res) => {
-    const personal = await Personal.findById(req.params.id)
-
-    if (personal === null) {
-        res.status(404)
-        return res.json({ message: "Personal admin not found or already delete"})
+        res.json({ message: "Delete Personal: " + personal.nameUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
     }
+};
 
-    await Personal.findByIdAndUpdate(req.params.id, {
-        nameUser: req.body.nameUser,
-        lastnameUser: req.body.lastnameUser,
-        dateAdmission: req.body.dateAdmission,
-        personalContacto: {
-            telefono: req.body.personalContacto.telefono,
-            correo: req.body.personalContacto.correo,
-        },
-        legajoUser: req.body.legajoUser
-    })
-
-    res.json({ message: "Update Personal" })
-}
-
-
-const deletePersonal = async ( req, res) => {
-    const personal = await Personal.findById(req.params.id)
-
-    if (personal === null) {
-        res.status(404)
-        return res.json({ message: "Personal admin not found or already delete"})
-    }
-
-    const filters = { _id: req.params.id}
-
-    const deletedDocuments = await Personal.deleteOne(filters)
-
-    res.json({ message: "Delete Personal: " + personal.nameUser })
-}
 
 
 

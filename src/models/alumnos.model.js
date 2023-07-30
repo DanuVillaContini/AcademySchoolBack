@@ -20,7 +20,8 @@ const alumnoSchema = mongoose.Schema(
         legajoAlumno: {
             type:Number,
             required: true,
-            unique: false, 
+            unique: false,
+            minLenght:4,
         },
 
         cuotaAlumno: {
