@@ -9,12 +9,17 @@ const { iniciarMateriasDB, iniciarSuperUsuarioDB, iniciarInstitutoDB } = require
 const yearRouter = require('./src/routes/year.route');
 const authRouter = require('./src/routes/auth.route');
 const institutoRouter = require('./src/routes/institucion.route')
+const cors = require('cors')
+
 
 
 require("dotenv").config()
 
 const app = express()
+app.use(cors())
+
 const port = process.env.PORT
+
 
 //Indico a la app que recibira jsons del user
 app.use(express.json({ limit: "50mb" }))
