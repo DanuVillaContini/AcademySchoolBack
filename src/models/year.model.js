@@ -1,12 +1,7 @@
 const mongoose = require('mongoose')
 
 const yearSchema= new mongoose.Schema({
-    idAlumno:{
-        type : mongoose.Schema.Types.ObjectId,
-        ref: 'Alumno',
-        required: true
 
-    },
     anio:{
         type : Number,
         minLenght: 1,

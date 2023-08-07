@@ -60,11 +60,14 @@ const loginUser = async (req, res) => {
           return res.json({ message: "Sin autorización" });
       }
 
+      //buscar(find)  institucion y que se fije si se actulizo:
+
       const token = jwt.sign(
           {
               id: personal._id,
               correo: personal.correo,
-              isEmployee: personal.isEmployee
+              isAdmin: personal.isAdmin
+              //datosActualizados: true
           },
           JWT_SECRET
       );

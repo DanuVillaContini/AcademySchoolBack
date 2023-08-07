@@ -7,26 +7,29 @@ const createAlumno = async (req, res) => {
         const {
             nameAlumno,
             lastnameAlumno,
-            legajoAlumno
+            legajoAlumno //agregar anio
         } = req.body;
+
 
         const alumnoCollection = await Alumno.find({ legajoAlumno });
         if (alumnoCollection.length) {
             return res.status(400).json({ message: `El alumno con legajo ${legajoAlumno} ya existe` });
         }
 
-        const alumno = new Alumno({
-            nameAlumno,
-            lastnameAlumno,
-            legajoAlumno
-        });
-
-        await alumno.save();
         const year = new Year({
-            idAlumno: alumno._id,
             anio: 1
         });
         await year.save();
+
+        const alumno = new Alumno({
+            nameAlumno,
+            lastnameAlumno,
+            legajoAlumno,
+            idAnio: year._id
+        });
+
+        await alumno.save();
+
 
         res.status(201);
         res.json({ message: "Alumno registrado exitosamente" });
@@ -49,7 +52,7 @@ const findAllAlumno = async (req, res) => {
                 $regex: lastnameRegex,
             },
         };
-        const alumno = await Alumno.find(filters);
+        const alumno = await Alumno.find(filters).populate("idAnio");
 
         res.json({ message: "Alumno encontrado", data: alumno });
     } catch (error) {

@@ -2,32 +2,37 @@ const mongoose = require("mongoose")
 
 const alumnoSchema = mongoose.Schema(
     {
-        nameAlumno:{
+        nameAlumno: {
             type: String,
             required: true,
             trim: true,
             minLenght: 3,
             maxLenght: 15
         },
-        lastnameAlumno:{
+        lastnameAlumno: {
             type: String,
             required: true,
             trim: true,
-            minLenght:3,
+            minLenght: 3,
             maxLenght: 30
         },
         legajoAlumno: {
-            type:Number,
+            type: Number,
             required: true,
             unique: false,
-            minLenght:4,
+            minLenght: 4,
         },
 
         cuotaAlumno: {
-            type:Boolean,
+            type: Boolean,
             require: true,
             default: false
         },
+        idAnio: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Year',
+            required: true
+        }
     }
 )
 
