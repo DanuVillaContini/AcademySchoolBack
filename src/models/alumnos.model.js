@@ -32,6 +32,11 @@ const alumnoSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Year',
             required: true
+        },
+        anio: {
+            type: Number,
+            required: true,
+            minLenght: 1
         }
     }
 )

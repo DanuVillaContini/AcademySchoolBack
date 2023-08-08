@@ -7,7 +7,8 @@ const createAlumno = async (req, res) => {
         const {
             nameAlumno,
             lastnameAlumno,
-            legajoAlumno //agregar anio
+            legajoAlumno,
+            anio
         } = req.body;
 
 
@@ -17,7 +18,7 @@ const createAlumno = async (req, res) => {
         }
 
         const year = new Year({
-            anio: 1
+            anio: anio
         });
         await year.save();
 
@@ -25,6 +26,7 @@ const createAlumno = async (req, res) => {
             nameAlumno,
             lastnameAlumno,
             legajoAlumno,
+            anio,
             idAnio: year._id
         });
 
