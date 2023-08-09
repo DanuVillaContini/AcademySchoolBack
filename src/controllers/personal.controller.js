@@ -76,11 +76,9 @@ const updateByIdPersonal = async (req, res) => {
             nameUser: req.body.nameUser,
             lastnameUser: req.body.lastnameUser,
             dateAdmission: req.body.dateAdmission,
-            personalContacto: {
-                telefono: req.body.personalContacto.telefono,
-                correo: req.body.personalContacto.correo,
-            },
-            legajoUser: req.body.legajoUser
+            telefono: req.body.telefono,
+            correo: req.body.correo,
+            // legajoUser: req.body.legajoUser
         });
 
         res.json({ message: "Update Personal" });

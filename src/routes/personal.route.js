@@ -49,7 +49,7 @@ personalRouter.put("/update/:id",
         body("dateAdmission").toDate().optional().isDate().withMessage("Debe mandar una fecha de admisión válida"),
         body("telefono").isString().optional().withMessage("Debe mandar un telefono"),
         body("correo").isString().optional().withMessage("Debe mandar un contacto personal"),
-        body("legajoUser").isNumeric().optional().withMessage("Debe mandar un número de legajo válido")
+        // body("legajoUser").isNumeric().optional().withMessage("Debe mandar un número de legajo válido")
 
     ],
     expressValidations,
