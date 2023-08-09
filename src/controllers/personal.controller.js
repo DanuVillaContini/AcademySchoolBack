@@ -1,4 +1,5 @@
 const Personal = require("../models/personal.model")
+// const { format } = require('date-fns');
 
 
 const createPersonal = async (req, res) => {
@@ -72,10 +73,13 @@ const updateByIdPersonal = async (req, res) => {
             return res.json({ message: "Personal not found or already deleted" });
         }
 
+        // Formatear la fecha recibida en el formato deseado
+        // const formattedDate = format(new Date(req.body.dateAdmission), 'yyyy-MM-dd');
+
         await Personal.findByIdAndUpdate(req.params.id, {
             nameUser: req.body.nameUser,
             lastnameUser: req.body.lastnameUser,
-            dateAdmission: req.body.dateAdmission,
+            // dateAdmission: formattedDate,
             telefono: req.body.telefono,
             correo: req.body.correo,
             // legajoUser: req.body.legajoUser

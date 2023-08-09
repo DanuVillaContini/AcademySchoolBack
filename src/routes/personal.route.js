@@ -46,7 +46,7 @@ personalRouter.put("/update/:id",
         param("id").isMongoId().withMessage("Debe mandar un ID válido"),
         body("nameUser").isString().optional().withMessage("Debe mandar un nombre"),
         body("lastnameUser").isString().optional().withMessage("Debe mandar un apellido"),
-        body("dateAdmission").toDate().optional().isDate().withMessage("Debe mandar una fecha de admisión válida"),
+        // body("dateAdmission").toDate().optional().isDate().withMessage("Debe mandar una fecha de admisión válida"),
         body("telefono").isString().optional().withMessage("Debe mandar un telefono"),
         body("correo").isString().optional().withMessage("Debe mandar un contacto personal"),
         // body("legajoUser").isNumeric().optional().withMessage("Debe mandar un número de legajo válido")
