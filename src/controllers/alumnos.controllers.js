@@ -93,6 +93,7 @@ const updateByIdAlumno = async (req, res) => {
         await Alumno.findByIdAndUpdate(req.params.id, {
             nameAlumno: req.body.nameAlumno,
             lastnameAlumno: req.body.lastnameAlumno,
+            anio: req.body.anio,
             legajoAlumno: req.body.legajoAlumno
         });
 
