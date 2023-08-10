@@ -47,7 +47,6 @@ const iniciarSuperUsuarioDB = async () => {
         const superUsuario = new Personal({
             nameUser: "superuser",
             lastnameUser: "Super",
-            dateAdmission: new Date(),
             telefono: "123456789",
             correo: "superuser@example.com",
             legajoUser: "1",

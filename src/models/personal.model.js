@@ -24,11 +24,6 @@ const personalSchema = mongoose.Schema(
             minLenght: 3,
             maxLenght: 30
         },
-        dateAdmission: {
-            type: Date,
-            required: true,
-            trim: true,
-        },
         telefono: {
             type: String,
             required: true,

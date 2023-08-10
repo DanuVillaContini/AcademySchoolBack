@@ -13,7 +13,6 @@ personalRouter.post("/create",
     [
         check('nameUser', "Ingrese nombre del empleado").notEmpty(),
         check('lastnameUser', "Ingrese apellido del empleador").notEmpty(),
-        check('dateAdmission', "Indique fecha de ingreso").notEmpty(),
 
         check('correo', 'Ingrese el correo del personal').notEmpty(),
         check('correo', 'El Correo debe ser una dirección de correo electrónico válida').isEmail(),
@@ -46,7 +45,6 @@ personalRouter.put("/update/:id",
         param("id").isMongoId().withMessage("Debe mandar un ID válido"),
         body("nameUser").isString().optional().withMessage("Debe mandar un nombre"),
         body("lastnameUser").isString().optional().withMessage("Debe mandar un apellido"),
-        // body("dateAdmission").toDate().optional().isDate().withMessage("Debe mandar una fecha de admisión válida"),
         body("telefono").isString().optional().withMessage("Debe mandar un telefono"),
         body("correo").isString().optional().withMessage("Debe mandar un contacto personal"),
         // body("legajoUser").isNumeric().optional().withMessage("Debe mandar un número de legajo válido")
@@ -65,15 +63,6 @@ personalRouter.delete("/delete/:id",
 
 )
 
-
-// http://localhost:8000/personal/login
-// personalRouter.post("/login",
-//     [
-
-//     ],
-//     expressValidations
-
-// )
 
 
 
