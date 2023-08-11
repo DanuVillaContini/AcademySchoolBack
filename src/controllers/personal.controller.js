@@ -10,7 +10,7 @@ const createPersonal = async (req, res) => {
             dateAdmission,
             telefono,
             correo,
-            legajoUser
+            dniUser
         } = req.body;
 
         const personal = new Personal({
@@ -19,7 +19,7 @@ const createPersonal = async (req, res) => {
             dateAdmission,
             telefono,
             correo,
-            legajoUser
+            dniUser
         });
 
         await personal.save();
@@ -78,7 +78,7 @@ const updateByIdPersonal = async (req, res) => {
             lastnameUser: req.body.lastnameUser,
             telefono: req.body.telefono,
             correo: req.body.correo,
-            // legajoUser: req.body.legajoUser
+            dniUser: req.body.dniUser
         });
 
         res.json({ message: "Update Personal" });

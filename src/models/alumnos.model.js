@@ -16,11 +16,11 @@ const alumnoSchema = mongoose.Schema(
             minLenght: 3,
             maxLenght: 30
         },
-        legajoAlumno: {
+        dniAlumno: {
             type: Number,
             required: true,
-            unique: false,
-            minLenght: 4,
+            unique: true,
+            minLenght: 8,
         },
 
         cuotaAlumno: {
@@ -37,6 +37,11 @@ const alumnoSchema = mongoose.Schema(
             type: Number,
             required: true,
             minLenght: 1
+        },
+        libreta: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Materias',
+            required: true
         }
     }
 )

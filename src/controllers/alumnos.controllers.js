@@ -1,5 +1,7 @@
 const Year = require("../models/year.model");
 const Alumno = require("../models/alumnos.model");
+const Materias = require("../models/materias.model");
+
 
 
 const createAlumno = async (req, res) => {
@@ -7,14 +9,14 @@ const createAlumno = async (req, res) => {
         const {
             nameAlumno,
             lastnameAlumno,
-            legajoAlumno,
+            dniAlumno,
             anio
         } = req.body;
 
 
-        const alumnoCollection = await Alumno.find({ legajoAlumno });
+        const alumnoCollection = await Alumno.find({ dniAlumno });
         if (alumnoCollection.length) {
-            return res.status(400).json({ message: `El alumno con legajo ${legajoAlumno} ya existe` });
+            return res.status(400).json({ message: `El alumno con dni ${dniAlumno} ya existe` });
         }
 
         const year = new Year({
@@ -22,12 +24,16 @@ const createAlumno = async (req, res) => {
         });
         await year.save();
 
+        const materias = new Materias()
+        await materias.save()
+
         const alumno = new Alumno({
             nameAlumno,
             lastnameAlumno,
-            legajoAlumno,
+            dniAlumno,
             anio,
-            idAnio: year._id
+            idAnio: year._id,
+            libreta: materias._id
         });
 
         await alumno.save();
@@ -54,7 +60,7 @@ const findAllAlumno = async (req, res) => {
                 $regex: lastnameRegex,
             },
         };
-        const alumno = await Alumno.find(filters).populate("idAnio");
+        const alumno = await Alumno.find(filters).populate("idAnio").populate("libreta");
 
         res.json({ message: "Alumno encontrado", data: alumno });
     } catch (error) {
@@ -94,7 +100,7 @@ const updateByIdAlumno = async (req, res) => {
             nameAlumno: req.body.nameAlumno,
             lastnameAlumno: req.body.lastnameAlumno,
             anio: req.body.anio,
-            legajoAlumno: req.body.legajoAlumno
+            dniAlumno: req.body.dniAlumno
         });
 
         res.json({ message: "Update Alumno" });

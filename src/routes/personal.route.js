@@ -17,7 +17,7 @@ personalRouter.post("/create",
         check('correo', 'Ingrese el correo del personal').notEmpty(),
         check('correo', 'El Correo debe ser una dirección de correo electrónico válida').isEmail(),
 
-        check('legajoUser', "Ingrese el n° de legajo").notEmpty()
+        check('dniUser', "Ingrese el n° de legajo").notEmpty()
     ],
     expressValidations,
     createPersonal
@@ -47,7 +47,7 @@ personalRouter.put("/update/:id",
         body("lastnameUser").isString().optional().withMessage("Debe mandar un apellido"),
         body("telefono").isString().optional().withMessage("Debe mandar un telefono"),
         body("correo").isString().optional().withMessage("Debe mandar un contacto personal"),
-        // body("legajoUser").isNumeric().optional().withMessage("Debe mandar un número de legajo válido")
+        body("dniUser").isNumeric().optional().withMessage("Debe mandar un número de legajo válido")
 
     ],
     expressValidations,

@@ -5,7 +5,7 @@ const alumnoRouter = require('./src/routes/alumnos.route');
 const personalRouter = require('./src/routes/personal.route');
 const notasRouter = require('./src/routes/notas.route');
 const materiaRouter = require('./src/routes/materia.route');
-const { iniciarMateriasDB, iniciarSuperUsuarioDB, iniciarInstitutoDB } = require("./src/utils/inicio.utils");
+const { iniciarSuperUsuarioDB, iniciarInstitutoDB } = require("./src/utils/inicio.utils");
 const yearRouter = require('./src/routes/year.route');
 const authRouter = require('./src/routes/auth.route');
 const institutoRouter = require('./src/routes/institucion.route')
@@ -39,7 +39,7 @@ app.use("/instituto", institutoRouter)
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("DB: 'pruebaFinalProject' CONECTADA")
-        iniciarMateriasDB()
+        // iniciarMateriasDB()
         iniciarSuperUsuarioDB()
         iniciarInstitutoDB()
         app.listen(port, () => {

@@ -38,7 +38,7 @@ const personalSchema = mongoose.Schema(
             minLenght: 10,
             maxLenght: 64
         },
-        legajoUser: {
+        dniUser: {
             type: Number,
             required: true,
             unique: true,

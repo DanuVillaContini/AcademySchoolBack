@@ -1,20 +1,51 @@
 const mongoose = require("mongoose")
 
-const materiaSchema = new mongoose.Schema(
+const materiasSchema = new mongoose.Schema(
     {
-        nombreMateria: {
-            type: String,
-            required: true,
-            unique: true
+        Matematica: {
+            type: Number,
+            default: 1
+        },
+        Quimica: {
+            type: Number,
+            default: 1
+        },
+        Lengua: {
+            type: Number,
+            default: 1
+        },
+        Biologia: {
+            type: Number,
+            default: 1
+        },
+        Fisica: {
+            type: Number,
+            default: 1
+        },
+        Geografia: {
+            type: Number,
+            default: 1
+        },
+        Economia: {
+            type: Number,
+            default: 1
+        },
+        Historia: {
+            type: Number,
+            default: 1
+        },
+        EducacionFisica: {
+            type: Number,
+            default: 1
         }
     }
 
 )
 
 
-const Materia = mongoose.model('Materia', materiaSchema);
+const Materias = mongoose.model('Materias', materiasSchema);
 
-module.exports = Materia;
+module.exports = Materias;
 
 
 
