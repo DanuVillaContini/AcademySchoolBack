@@ -26,7 +26,7 @@ app.use("/year",yearRouter)
 app.use("/auth", authRouter)
 app.use("/instituto", institutoRouter)
 
-
+console.log("MONGO URI",process.env.MONGO_URI)
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("DB: 'pruebaFinalProject' CONECTADA")
