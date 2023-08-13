@@ -5,27 +5,17 @@ const { createAlumno, deleteAlumno, updateByIdAlumno, findByIdAlumno, findAllAlu
 
 const alumnoRouter = Router()
 
-
-// http://localhost:8000/alumno/create
 alumnoRouter.post("/create",
     [
         check('nameAlumno', "Ingrese nombre del alumno").notEmpty(),
         check('lastnameAlumno', "Ingrese apellido del alumno").notEmpty(),
         check('dniAlumno', "Ingrese numero de legajo del alumno").notEmpty(),
         check('anio', "Ingrese año del alumno").notEmpty()
-
-
     ],
     expressValidations,
     createAlumno
 )
-
-
-// http://localhost:8000/alumno/find
 alumnoRouter.get("/find", findAllAlumno)
-
-
-// http://localhost:8000/alumno/find-by-id/
 alumnoRouter.get("/find-by-id/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un id valido")
@@ -33,8 +23,6 @@ alumnoRouter.get("/find-by-id/:id",
     expressValidations,
     findByIdAlumno
 )
-
-// http://localhost:8000/alumno/update/
 alumnoRouter.put("/update/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un ID válido"),
@@ -42,12 +30,10 @@ alumnoRouter.put("/update/:id",
         body("lastnameAlumno").isString().optional().withMessage("Debe mandar un apellido"),
         body("dniAlumno").isNumeric().optional().withMessage("Debe mandar un número de legajo válido"),
         body('anio').isNumeric().optional().withMessage("Debe indicar el año correcto de cursado del alumnos")
-
     ],
     expressValidations,
     updateByIdAlumno
 )
-// http://localhost:8000/alumno/delete/
 alumnoRouter.delete("/delete/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un id valido")

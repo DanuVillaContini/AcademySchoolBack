@@ -1,13 +1,5 @@
 const mongoose = require("mongoose")
 
-// Nombre
-// Apellido
-// FechaIngreso
-// Contacto
-//     Telefono
-//     Correo
-// legajo
-
 const personalSchema = mongoose.Schema(
     {
         nameUser: {
