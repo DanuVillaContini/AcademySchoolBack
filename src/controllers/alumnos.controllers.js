@@ -72,14 +72,15 @@ const findAllAlumno = async (req, res) => {
 
 const findByIdAlumno = async (req, res) => {
     try {
-        const alumno = await Alumno.findById(req.params.id).populate(idAnio);
+        const alumno = await Alumno.findById(req.params.id).populate("idAnio");
 
         if (alumno === null) {
             res.status(404);
             return res.json({ message: "Alumno not found" });
         }
 
-        res.json({ message: "FIND ALUMNO BY ID: ", data: alumno });
+
+        res.json({ message: "FIND ALUMNO BY ID: ", data: alumno, alDia: alDia });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
@@ -124,7 +125,7 @@ const deleteAlumno = async (req, res) => {
 
         const deletedDocuments = await Alumno.deleteOne(filters);
 
-        res.json({ message: "Delete Alumno"});
+        res.json({ message: "Delete Alumno" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });

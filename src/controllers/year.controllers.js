@@ -12,19 +12,25 @@ const showYear = async (req, res) => {
   
       // Obtener todas las cuotas y sus estados
       const cuotas = {
-        cuotaUno: year.cuotaUno,
-        cuotaDos: year.cuotaDos,
-        cuotaTres: year.cuotaTres,
-        cuotaCuatro: year.cuotaCuatro,
-        cuotaCinco: year.cuotaCinco,
-        cuotaSeis: year.cuotaSeis,
-        cuotaSiete: year.cuotaSiete,
-        cuotaOcho: year.cuotaOcho,
-        cuotaNueve: year.cuotaNueve,
-        cuotaDiez: year.cuotaDiez
+        cuota1: year.cuota1,
+        cuota2: year.cuota2,
+        cuota3: year.cuota3,
+        cuota4: year.cuota4,
+        cuota5: year.cuota5,
+        cuota6: year.cuota6,
+        cuota7: year.cuota7,
+        cuota8: year.cuota8,
+        cuota9: year.cuota9,
+        cuota10: year.cuota10
       };
+      console.log(cuotas);
+      const mesActual = new Date().getMonth() - 1;
+      let alDia = true
+      for (let i = 1; i <= mesActual; i++) {
+          if (cuotas["cuota" + i] === false) alDia = false
+      }
   
-      res.json(cuotas);
+      res.json({cuotas, alDia});
     } catch (error) {
       res.status(500).json({ message: "Error al obtener las cuotas", error: error.message });
     }
@@ -36,7 +42,7 @@ const updateYear = async (req, res) => {
     const cuotaName = req.params.cuota; 
 
 
-    const validCuotas = ["cuotaUno", "cuotaDos", "cuotaTres", "cuotaCuatro", "cuotaCinco", "cuotaSeis","cuotaSiete","cuotaOcho","cuotaNueve","cuotaDiez"];
+    const validCuotas = ["cuota1", "cuota2", "cuota3", "cuota4", "cuota5", "cuota6","cuota7","cuota8","cuota9","cuota10"];
     if (!validCuotas.includes(cuotaName)) {
         return res.status(400).json({ message: "Nombre de cuota no válido" });
     }
