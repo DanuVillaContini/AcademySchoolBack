@@ -72,7 +72,7 @@ const findAllAlumno = async (req, res) => {
 
 const findByIdAlumno = async (req, res) => {
     try {
-        const alumno = await Alumno.findById(req.params.id).populate(idAnio);
+        const alumno = await Alumno.findById(req.params.id).populate("idAnio");
 
         if (alumno === null) {
             res.status(404);
