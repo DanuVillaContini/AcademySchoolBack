@@ -64,7 +64,7 @@ const findByIdAlumno = async (req, res) => {
             res.status(404);
             return res.json({ message: "Alumno not found" });
         }
-        res.json({ message: "FIND ALUMNO BY ID: ", data: alumno, alDia: alDia });
+        res.json({ message: "FIND ALUMNO BY ID: ", data: alumno });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
