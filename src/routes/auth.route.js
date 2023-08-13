@@ -3,7 +3,6 @@ const { check, param } = require("express-validator");
 const { expressValidations } = require("../middleware/common.validation");
 const {updateRol, loginUser} = require("../controllers/auth.controllers");
 
-// http://localhost:8000/auth
 const authRouter = Router();
 
 authRouter.post(
@@ -17,9 +16,6 @@ authRouter.post(
   expressValidations,
   loginUser
 );
-
-
-// http://localhost:8000/auth/update-rol/:id
 authRouter.put(
   "/update-rol/:id",
   [

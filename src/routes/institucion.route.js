@@ -5,10 +5,8 @@ const { check } = require("express-validator")
 
 const institutoRouter = Router()
 
-// http://localhost:8000/instituto/show
 institutoRouter.get("/show", showDataInstituto)
 
-// http://localhost:8000/instituto/update
 institutoRouter.put("/update",
 [
     check("nombreInstituto","Ingrese nombre del Instituto").notEmpty(),
