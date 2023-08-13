@@ -7,43 +7,43 @@ const yearSchema= new mongoose.Schema({
         minLenght: 1,
         required :true
     },
-    cuotaUno: {
+    cuota1: {
         type:Boolean,
         default: false
     },
-    cuotaDos: {
+    cuota2: {
         type:Boolean,
         default: false
     },
-    cuotaTres: {
+    cuota3: {
         type:Boolean,
         default: false
     },
-    cuotaCuatro: {
+    cuota4: {
         type:Boolean,
         default: false
     },
-    cuotaCinco: {
+    cuota5: {
         type:Boolean,
         default: false
     },
-    cuotaSeis: {
+    cuota6: {
         type:Boolean,
         default: false
     },
-    cuotaSiete: {
+    cuota7: {
         type:Boolean,
         default: false
     },
-    cuotaOcho: {
+    cuota8: {
         type:Boolean,
         default: false
     },
-    cuotaNueve: {
+    cuota9: {
         type:Boolean,
         default: false
     },
-    cuotaDiez: {
+    cuota10: {
         type:Boolean,
         default: false
     }
