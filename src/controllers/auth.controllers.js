@@ -6,28 +6,37 @@ const Personal = require("../models/personal.model")
 const Institucion = require("../models/institucion.model")
 const { validationResult } = require('express-validator');
 
-const updateRol = async (req, res)=>{
+const updateRol = async (req, res) => {
     const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  const { id } = req.params;
-  const { pass } = req.body;
-  try {
-    let personal = await Personal.findById(id);
-    if (!personal) {
-      return res.status(404).json({ msg: 'Personal no encontrado' });
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
-    personal.isAdmin = true;
-    const salt = await bcrypt.genSalt(10);
-    personal.pass = await bcrypt.hash(pass, salt);
-    await personal.save();
-    return res.status(200).json({ msg: 'Rol actualizado y contraseña creada exitosamente' });
-  } catch (err) {
-    console.error(err.message);
-    return res.status(500).json({ msg: 'Error en el servidor' });
-  }
-}
+    
+    const { id } = req.params;
+    const { pass } = req.body;
+    
+    try {
+        let personal = await Personal.findById(id);
+        if (!personal) {
+            return res.status(404).json({ msg: 'Personal no encontrado' });
+        }
+
+        // Verificar si el correo del empleado es el mismo que el del superusuario
+        if (personal.correo === "superuser@example.com") {
+            return res.status(403).json({ msg: 'No se permite cambiar el rol y contraseña del superusuario' });
+        }
+
+        personal.isAdmin = true;
+        const salt = await bcrypt.genSalt(10);
+        personal.pass = await bcrypt.hash(pass, salt);
+        await personal.save();
+        return res.status(200).json({ msg: 'Rol actualizado y contraseña creada exitosamente' });
+    } catch (err) {
+        console.error(err.message);
+        return res.status(500).json({ msg: 'Error en el servidor' });
+    }
+};
+
 
 
 
