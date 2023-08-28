@@ -96,9 +96,10 @@ const UpdatedStatusByIdAlumno = async (req, res) => {
             res.status(404);
             return res.json({ message: "Alumno not found" });
         }
+        {
         alumno.isActive = !alumno.isActive;
         await alumno.save();
-        res.json({ message: "Alumno actualizado"});
+        res.json({ message: "Alumno actualizado"})};
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
@@ -108,6 +109,6 @@ module.exports = {
     createAlumno,
     findByIdAlumno,
     updateByIdAlumno,
-    deleteAlumno,
+    UpdatedStatusByIdAlumno,
     findAllAlumno
 }
