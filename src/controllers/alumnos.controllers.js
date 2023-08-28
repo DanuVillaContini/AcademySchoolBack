@@ -89,7 +89,7 @@ const updateByIdAlumno = async (req, res) => {
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
     }
 };
-const UdatedStatusByIdAlumno = async (req, res) => {
+const UpdatedStatusByIdAlumno = async (req, res) => {
     try {
         const alumno = await Alumno.findById(req.params.id);
         if (alumno === null) {

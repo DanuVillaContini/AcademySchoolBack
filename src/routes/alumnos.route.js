@@ -1,7 +1,7 @@
 const { Router } = require("express")
 const { check, param, body} = require("express-validator")
 const { expressValidations } = require("../middleware/common.validation")
-const { createAlumno, deleteAlumno, updateByIdAlumno, findByIdAlumno, findAllAlumno } = require("../controllers/alumnos.controllers")
+const { createAlumno, UpdatedStatusByIdAlumno, updateByIdAlumno, findByIdAlumno, findAllAlumno } = require("../controllers/alumnos.controllers")
 
 const alumnoRouter = Router()
 
@@ -34,12 +34,12 @@ alumnoRouter.put("/update/:id",
     expressValidations,
     updateByIdAlumno
 )
-alumnoRouter.delete("/delete/:id",
+alumnoRouter.put("/update-status/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un id valido")
     ],
     expressValidations,
-    deleteAlumno
+    UpdatedStatusByIdAlumno
 )
 
 module.exports = alumnoRouter
