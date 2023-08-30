@@ -2,6 +2,7 @@ const { Router } = require("express")
 const { showMaterias, updateMaterias } = require("../controllers/materia.controllers")
 const { expressValidations } = require("../middleware/common.validation")
 const { body, check } = require("express-validator")
+const { verifyJWT } = require("../middleware/auth.validations")
 
 const materiaRouter = Router()
 
@@ -11,6 +12,7 @@ materiaRouter.get("/show/:id",
     ]
     ,
     expressValidations,
+    verifyJWT,
     showMaterias)
 
 materiaRouter.put("/update/:id/:materia/",
@@ -21,6 +23,7 @@ materiaRouter.put("/update/:id/:materia/",
 
     ]
     , expressValidations,
+    verifyJWT,
     updateMaterias
 )
 

@@ -2,6 +2,7 @@ const { Router } = require("express")
 const { check, param, body} = require("express-validator")
 const { expressValidations } = require("../middleware/common.validation")
 const { createPersonal, deletePersonal, updateByIdPersonal, findByIdPersonal, findAllPersonal } = require("../controllers/personal.controller")
+const { verifyJWT } = require("../middleware/auth.validations")
 
 const personalRouter = Router()
 
@@ -14,6 +15,7 @@ personalRouter.post("/create",
         check('dniUser', "Ingrese el n° de legajo").notEmpty()
     ],
     expressValidations,
+    verifyJWT,
     createPersonal
 )
 
@@ -24,6 +26,7 @@ personalRouter.get("/find-by-id/:id",
         param("id").isMongoId().withMessage("Debe mandar un id valido")
     ],
     expressValidations,
+    verifyJWT,
     findByIdPersonal
 )
 
@@ -38,6 +41,7 @@ personalRouter.put("/update/:id",
 
     ],
     expressValidations,
+    verifyJWT,
     updateByIdPersonal
 )
 personalRouter.delete("/delete/:id",
@@ -45,6 +49,7 @@ personalRouter.delete("/delete/:id",
         param("id").isMongoId().withMessage("Debe mandar un id valido")
     ],
     expressValidations,
+    verifyJWT,
     deletePersonal
 
 )
