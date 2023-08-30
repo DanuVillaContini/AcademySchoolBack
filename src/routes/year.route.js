@@ -1,13 +1,15 @@
 const { Router } = require("express")
-const { check, param, body } = require("express-validator")
+const { check } = require("express-validator")
 const { expressValidations } = require("../middleware/common.validation")
 const { updateYear, showYear } = require("../controllers/year.controllers")
+const { verifyJWT } = require("../middleware/auth.validations")
 
 const yearRouter = Router()
 
 yearRouter.get('/show/:id', [
     check("id").isMongoId().withMessage("El id del año debe ser válido")],
     expressValidations,
+    verifyJWT,
     showYear)
 yearRouter.put("/update/:id/:cuota", [
     check("id").isMongoId().withMessage("El id del año debe ser válido"),
