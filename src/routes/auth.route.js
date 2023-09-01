@@ -38,8 +38,6 @@ authRouter.put(
   "/change-password/:id",
   [
     param("id").isMongoId().withMessage("Debe mandar un ID válido"),
-    check("correo", "Debe ingresar un Correo").notEmpty(),
-    check("correo", "Formato del correo debe ser example@example.com").isEmail(),
     check("nuevaPass", "Debe el pass de usuario").notEmpty(),
     check("nuevaPass", "Debe ser alphanumerico el pass").isAlphanumeric(),
   ],

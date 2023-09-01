@@ -21,7 +21,6 @@ const updateRol = async (req, res) => {
       return res.status(404).json({ msg: 'Personal no encontrado' });
     }
 
-    // Verificar si el correo del empleado es el mismo que el del superusuario
     if (personal.correo === "superuser@example.com") {
       return res.status(403).json({ msg: 'No se permite cambiar el rol y contraseña del superusuario' });
     }
@@ -107,11 +106,6 @@ const changePassword = async (req, res) => {
 
     if (personal.correo === "superuser@example.com") {
       return res.status(403).json({ msg: 'No se permite cambiar la contraseña del superusuario' });
-    }
-
-    // Verificar si el correo proporcionado coincide con el correo almacenado en la base de datos
-    if (personal.correo !== correo) {
-      return res.status(403).json({ msg: 'El correo proporcionado no coincide con el correo almacenado' });
     }
 
     const salt = await bcrypt.genSalt(10);
