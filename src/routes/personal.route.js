@@ -19,7 +19,7 @@ personalRouter.post("/create",
     createPersonal
 )
 
-personalRouter.get("/find", findAllPersonal)
+personalRouter.get("/find",verifyJWT, findAllPersonal)
 
 personalRouter.get("/find-by-id/:id",
     [
