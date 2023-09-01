@@ -66,6 +66,12 @@ const updateByIdPersonal = async (req, res) => {
             res.status(404);
             return res.json({ message: "Personal not found or already deleted" });
         }
+
+        if (personal.correo === "superuser@example.com") {
+            res.status(403);
+            return res.json({ message: "No se permite actualizar al superusuario" });
+        }
+
         await Personal.findByIdAndUpdate(req.params.id, {
             nameUser: req.body.nameUser,
             lastnameUser: req.body.lastnameUser,
@@ -73,12 +79,14 @@ const updateByIdPersonal = async (req, res) => {
             correo: req.body.correo,
             dniUser: req.body.dniUser
         });
+
         res.json({ message: "Update Personal" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
     }
 };
+
 const deletePersonal = async (req, res) => {
     try {
         const personal = await Personal.findById(req.params.id);
@@ -86,14 +94,22 @@ const deletePersonal = async (req, res) => {
             res.status(404);
             return res.json({ message: "Personal not found or already deleted" });
         }
+
+        if (personal.correo === "superuser@example.com") {
+            res.status(403);
+            return res.json({ message: "No se permite eliminar al superusuario" });
+        }
+
         const filters = { _id: req.params.id };
         const deletedDocuments = await Personal.deleteOne(filters);
+
         res.json({ message: "Delete Personal: " + personal.nameUser });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
     }
 };
+
 
 module.exports = {
     createPersonal,

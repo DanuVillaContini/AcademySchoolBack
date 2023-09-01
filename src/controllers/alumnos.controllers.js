@@ -89,16 +89,17 @@ const updateByIdAlumno = async (req, res) => {
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
     }
 };
-const deleteAlumno = async (req, res) => {
+const UpdatedStatusByIdAlumno = async (req, res) => {
     try {
         const alumno = await Alumno.findById(req.params.id);
         if (alumno === null) {
             res.status(404);
-            return res.json({ message: "Alumno not found or already deleted" });
+            return res.json({ message: "Alumno not found" });
         }
-        const filters = { _id: req.params.id };
-        const deletedDocuments = await Alumno.deleteOne(filters);
-        res.json({ message: "Delete Alumno" });
+        {
+        alumno.isActive = !alumno.isActive;
+        await alumno.save();
+        res.json({ message: "Alumno actualizado"})};
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
@@ -108,6 +109,6 @@ module.exports = {
     createAlumno,
     findByIdAlumno,
     updateByIdAlumno,
-    deleteAlumno,
+    UpdatedStatusByIdAlumno,
     findAllAlumno
 }

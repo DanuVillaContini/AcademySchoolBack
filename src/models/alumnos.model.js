@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const { boolean } = require("webidl-conversions")
 
 const alumnoSchema = mongoose.Schema(
     {
@@ -42,7 +43,12 @@ const alumnoSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Materias',
             required: true
-        }
+        },
+        isActive: {
+            type: Boolean,
+            required: false,
+            default: true
+      }
     }
 )
 

@@ -2,6 +2,7 @@ const { Router } = require("express")
 const { updateInstitucion, showDataInstituto } = require("../controllers/institucion.controllers")
 const { expressValidations } = require("../middleware/common.validation")
 const { check } = require("express-validator")
+const { verifyJWT } = require("../middleware/auth.validations")
 
 const institutoRouter = Router()
 
