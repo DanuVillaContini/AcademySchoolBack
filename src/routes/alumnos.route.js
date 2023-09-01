@@ -1,8 +1,9 @@
 const { Router } = require("express")
 const { check, param, body } = require("express-validator")
 const { expressValidations } = require("../middleware/common.validation")
-const { createAlumno, deleteAlumno, updateByIdAlumno, findByIdAlumno, findAllAlumno } = require("../controllers/alumnos.controllers")
+const { createAlumno, UpdatedStatusByIdAlumno, updateByIdAlumno, findByIdAlumno, findAllAlumno } = require("../controllers/alumnos.controllers")
 const { verifyJWT } = require("../middleware/auth.validations")
+
 
 const alumnoRouter = Router()
 
@@ -38,13 +39,13 @@ alumnoRouter.put("/update/:id",
     verifyJWT,
     updateByIdAlumno
 )
-alumnoRouter.delete("/delete/:id",
+alumnoRouter.put("/update-status/:id",
     [
         param("id").isMongoId().withMessage("Debe mandar un id valido")
     ],
     expressValidations,
     verifyJWT,
-    deleteAlumno
+    UpdatedStatusByIdAlumno
 )
 
 module.exports = alumnoRouter
