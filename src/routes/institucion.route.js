@@ -18,7 +18,6 @@ institutoRouter.put("/update",
     check("direccionInstituto","Ingrese direccion del Instituto").notEmpty(),
 ],
 expressValidations,
-verifyJWT,
 updateInstitucion)
 
 module.exports = institutoRouter
